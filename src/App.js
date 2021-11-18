@@ -1,16 +1,14 @@
 import React from 'react';
 import './App.css';
-import  { BrowserRouter, Router } from 'react-router-dom';
-import Routes from ''
+import { BrowserRouter } from 'react-router-dom';
+// import Routes from '';
 
 function App() {
- 
   return (
     <BrowserRouter>
-    <Routes />
+      {/* <Routes /> */}
     </BrowserRouter>
   );
 }
 
 export default App;
-

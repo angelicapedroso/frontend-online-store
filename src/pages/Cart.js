@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductList from './ProductList';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   constructor() {
@@ -17,6 +18,13 @@ class Cart extends Component {
         </h1>
         <ProductList />
       </div>
+        <div>
+          <button type="button">
+            <Link to="/CartPage" data-testid="shopping-cart-button" />
+          </button>
+        </div>
+        ;
+      </>
     );
   }
 }

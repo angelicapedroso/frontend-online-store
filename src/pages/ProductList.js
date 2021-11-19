@@ -46,7 +46,7 @@ class ProductList extends Component {
           <div key={ product.id }>
             <Link
               data-testid="product-detail-link"
-              to={ { pathname: `/product/${product.id}`, state: { product } } }
+              to={ { pathname: `/product/${product.id}` } }
             >
               <div data-testid="product">
                 <h3>{product.title}</h3>

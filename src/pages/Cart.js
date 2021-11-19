@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ProductList from './ProductList';
 import { Link } from 'react-router-dom';
+import ProductList from './ProductList';
 
 class Cart extends Component {
   constructor() {
@@ -17,14 +17,10 @@ class Cart extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         <ProductList />
+        <button type="button">
+          <Link to="/CartPage" data-testid="shopping-cart-button" />
+        </button>
       </div>
-        <div>
-          <button type="button">
-            <Link to="/CartPage" data-testid="shopping-cart-button" />
-          </button>
-        </div>
-        ;
-      </>
     );
   }
 }

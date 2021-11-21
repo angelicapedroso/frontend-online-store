@@ -19,7 +19,7 @@ class Cart extends React.Component {
       });
     });
   }
-  
+
   render() {
     const { categories } = this.state;
     return (

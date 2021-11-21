@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../services/api';
+import ProductList from './ProductList';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -18,11 +19,11 @@ class Cart extends React.Component {
       });
     });
   }
-
+  
   render() {
     const { categories } = this.state;
     return (
-      <>
+      <div>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
@@ -33,12 +34,11 @@ class Cart extends React.Component {
             </section>
           ))}
         </div>
-        <div>
-          <button type="button">
-            <Link to="/CartPage" data-testid="shopping-cart-button" />
-          </button>
-        </div>
-      </>
+        <ProductList />
+        <button type="button">
+          <Link to="/CartPage" data-testid="shopping-cart-button" />
+        </button>
+      </div>
     );
   }
 }

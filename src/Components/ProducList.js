@@ -1,7 +1,7 @@
 // Requisito 5 - Mapeando para listar os cards de acordo com a pesquisa
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardList from './CardResum';
+import CardResum from './CardResum';
 
 class ProductList extends React.Component {
   render() {
@@ -15,7 +15,7 @@ class ProductList extends React.Component {
     }
     return (
       <div>
-        { product.map((prod, id) => <CardList key={ id } product={ prod } />)}
+        { product.map((prod, id) => <CardResum key={ id } product={ prod } />)}
       </div>
     );
   }

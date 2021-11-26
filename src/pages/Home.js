@@ -79,7 +79,6 @@ class Home extends React.Component {
             pathname: '/CartPage',
             state: { products: [...productCart] },
           } }
-
           data-testid="shopping-cart-button"
         >
           <button

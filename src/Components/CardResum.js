@@ -13,7 +13,7 @@ class CardResum extends React.Component {
       <div>
         <Link
           data-testid="product-detail-link"
-          to={ { pathname: `/productDetails/${ id }` } }
+          to={ { pathname: `/productDetails/${id}` } }
         >
           <div data-testid="product">
             <h3 data-testid="shopping-cart-product-name">{ title }</h3>

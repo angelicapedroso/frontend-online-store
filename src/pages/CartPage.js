@@ -1,11 +1,11 @@
+// Requisito 8 feito com ajuda do Brunão - T16A e da Priscila - T16A
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class CartPage extends Component {
   constructor(props) {
     super(props);
-    // const { state: { products } } = props.location;
-    // console.log(products);
     const { location: { state: { products } } } = this.props;
     this.state = {
       cardProduct: products,
@@ -25,9 +25,12 @@ class CartPage extends Component {
               {
                 cardProduct.map((product) => (
                   <p key={ product.id }>
-                    <h2>{ product.title }</h2>
+                    <h2 data-testid="shopping-cart-product-name">{ product.title }</h2>
                     <img src={ product.thumbnail } alt={ product.title } />
                     <p>{ product.price }</p>
+                    <span data-testid="shopping-cart-product-quantity">
+                      1
+                    </span>
                   </p>
                 ))
               }
@@ -44,7 +47,5 @@ CartPage.propTypes = {
     products: PropTypes.string,
   }).isRequired,
 };
-
-// props.location.state;
 
 export default CartPage;

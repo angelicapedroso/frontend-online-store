@@ -11,11 +11,14 @@ class Home extends React.Component {
     this.state = {
       search: '',
       product: [],
+      productList: [],
+      productCart: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.fetchAPI = this.fetchAPI.bind(this);
     this.selectedCategory = this.selectedCategory.bind(this);
+    this.addProductCart = this.addProductCart.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +37,7 @@ class Home extends React.Component {
   fetchAPI() {
     const { search } = this.state;
     getProductsFromCategoryAndQuery('', search).then((query) => {
-      this.setState({ product: query.results });
+      this.setState({ productList: query.results });
     });
   }
 
@@ -42,8 +45,15 @@ class Home extends React.Component {
     this.fetchAPI();
   }
 
+  addProductCart(product) {
+    this.setState((prevState) => {
+      this.setState({ productCart: [...prevState.productCart, product] });
+    });
+  }
+
   render() {
-    const { search, product } = this.state;
+    const { search, product, productList, productCart } = this.state;
+    console.log(this);
     return (
       // Requisito 2
       <div>
@@ -63,13 +73,23 @@ class Home extends React.Component {
         >
           Buscar
         </button>
-        {/* Requisito 3 */}
-        <button type="button">
-          <Link to="/CartPage" data-testid="shopping-cart-button" />
-        </button>
-        {/* Requisito 4 */}
+        {/* Requisito 3 */ }
+        <Link
+          to={ {
+            pathname: '/CartPage',
+            state: { products: [...productCart] },
+          } }
+          data-testid="shopping-cart-button"
+        >
+          <button
+            type="button"
+          >
+            Carrinho de compras
+          </button>
+        </Link>
+        {/* Requisito 4 */ }
         <div>
-          {product.map(({ id, name }) => (
+          { product.map(({ id, name }) => (
             <div key={ id }>
               <label htmlFor={ id } data-testid="category">
                 <input
@@ -79,13 +99,13 @@ class Home extends React.Component {
                   value={ name }
                   onChange={ this.selectedCategory } // Requisito 6 - Função para chamar a categoria
                 />
-                {name}
+                { name }
               </label>
             </div>
-          ))}
+          )) }
         </div>
-        {/* Requisito 5 - Renderizando a lista de cards */}
-        <ProductList product={ product } />
+        {/* Requisito 5 - Renderizando a lista de cards */ }
+        <ProductList product={ productList } addProductCart={ this.addProductCart } />
       </div>
     );
   }

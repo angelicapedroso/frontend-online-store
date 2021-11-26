@@ -20,17 +20,18 @@ class CartPage extends Component {
       (
         cardProduct.length <= 0
           ? <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
-          : (<section>
-            {
-              cardProduct.map((product) => (
-                <h3 key={ product.id }>
-                  { product.title }
-                  <img src={ product.thumbnail } alt={ product.title } />
-                  <p>{ product.price }</p>
-                </h3>
-              ))
-            }
-             </section>
+          : (
+            <section>
+              {
+                cardProduct.map((product) => (
+                  <p key={ product.id }>
+                    <h2>{ product.title }</h2>
+                    <img src={ product.thumbnail } alt={ product.title } />
+                    <p>{ product.price }</p>
+                  </p>
+                ))
+              }
+            </section>
           )
       )
     );

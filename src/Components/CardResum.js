@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 
 class CardResum extends React.Component {
   render() {
-    const { product: { title, thumbnail, price, id }, addProductCart, product } = this.props;
+    const { product: { title, thumbnail, price, id },
+      addProductCart,
+      product,
+    } = this.props;
     return (
       <div>
         <Link

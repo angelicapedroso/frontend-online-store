@@ -19,19 +19,24 @@ class Home extends React.Component {
     this.fetchAPI = this.fetchAPI.bind(this);
     this.selectedCategory = this.selectedCategory.bind(this);
     this.addProductCart = this.addProductCart.bind(this);
+    this.callCategories = this.callCategories.bind(this);
   }
 
   componentDidMount() {
-    getCategories().then((products) => {
-      this.setState({
-        product: products,
-      });
-    });
+    this.callCategories();
   }
 
   handleChange(event) {
     const { value } = event.target;
     this.setState({ search: value });
+  }
+
+  callCategories() {
+    getCategories().then((products) => {
+      this.setState({
+        product: products,
+      });
+    });
   }
 
   fetchAPI() {
@@ -53,7 +58,6 @@ class Home extends React.Component {
 
   render() {
     const { search, product, productList, productCart } = this.state;
-    console.log(this);
     return (
       // Requisito 2
       <div>

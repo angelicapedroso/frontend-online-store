@@ -10,7 +10,6 @@ class CartPage extends Component {
     this.state = {
       cardProduct: products,
     };
-    console.log(products);
   }
 
   render() {
@@ -24,14 +23,14 @@ class CartPage extends Component {
             <section>
               {
                 cardProduct.map((product) => (
-                  <p key={ product.id }>
+                  <div key={ product.id }>
                     <h2 data-testid="shopping-cart-product-name">{ product.title }</h2>
                     <img src={ product.thumbnail } alt={ product.title } />
                     <p>{ product.price }</p>
                     <span data-testid="shopping-cart-product-quantity">
                       1
                     </span>
-                  </p>
+                  </div>
                 ))
               }
             </section>
@@ -43,8 +42,14 @@ class CartPage extends Component {
 
 CartPage.propTypes = {
   location: PropTypes.shape({
-    state: PropTypes.string,
-    products: PropTypes.string,
+    state: PropTypes.shape({
+      products: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        thumbnail: PropTypes.string,
+        price: PropTypes.number,
+      })),
+    }),
   }).isRequired,
 };
 

@@ -1,15 +1,19 @@
+// Requisito 9 feito com a ajuda dos alunos Emerson Moreira e Rafael Carvalho da turma 16 tribo A.
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductsFromId } from '../services/api';
-// teste
+
 class ProductDetails extends React.Component {
   constructor() {
     super();
     this.state = {
       product: {},
+      productCart: [],
     };
     this.getProduct = this.getProduct.bind(this);
+    this.addProductCart = this.addProductCart.bind(this);
   }
 
   componentDidMount() {
@@ -25,8 +29,14 @@ class ProductDetails extends React.Component {
     });
   }
 
+  addProductCart(product) {
+    this.setState((prevState) => {
+      this.setState({ productCart: [...prevState.productCart, product] });
+    });
+  }
+
   render() {
-    const { product } = this.state;
+    const { product, productCart } = this.state;
     return (
       <div>
         <h2 data-testid="product-detail-name">{product.title}</h2>
@@ -35,13 +45,24 @@ class ProductDetails extends React.Component {
         <p>{product.category_id}</p>
         <p>{product.site_id}</p>
         <Link
-          to={ { pathname: '/CartPage' } }
+          to={ {
+            pathname: '/CartPage',
+            state: { products: [...productCart] },
+          } }
+          data-testid="shopping-cart-button"
         >
-          <input
+          <button
             type="button"
-            value="carrinho"
-          />
+          >
+            Carrinho de compras
+          </button>
         </Link>
+        <input
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          value="Adicionar ao carrinho"
+          onClick={ () => this.addProductCart(product) }
+        />
       </div>
     );
   }

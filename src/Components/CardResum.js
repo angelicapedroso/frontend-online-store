@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 class CardResum extends React.Component {
   render() {
     const { product: { title, thumbnail, price, id },
-      addProductCart,
       product,
+      addProductCart,
     } = this.props;
     return (
       <div>
